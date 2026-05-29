@@ -29,16 +29,23 @@
                 <th>Priority</th>
                 <th>Status</th>
                 <th>Due Date</th>
+                <th>Actions</th>
             </tr>
 
             {% for task in tasks %}
 
-            <tr>
-                <td>{{ task.title }}</td>
-                <td>{{ task.priority }}</td>
-                <td>{{ task.status }}</td>
-                <td>{{ task.due_date }}</td>
-            </tr>
+           <tr>
+    <td>{{ task.title }}</td>
+    <td>{{ task.priority }}</td>
+    <td>{{ task.status }}</td>
+    <td>{{ task.due_date }}</td>
+
+    <td>
+        <a href="{% url 'task_update' task.id %}">
+            Edit
+        </a>
+    </td>
+</tr>
 
             {% endfor %}
 

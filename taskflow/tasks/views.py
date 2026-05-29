@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import TaskForm
 from .models import Task
+from django.shortcuts import get_object_or_404
 
 def home(request):
     """
@@ -48,3 +49,35 @@ def task_create(request):
         form = TaskForm()
 
     return render(request, 'tasks/task_form.html', {'form': form})
+
+
+@login_required
+def task_update(request, pk):
+    """
+    Update an existing task.
+    """
+
+    task = get_object_or_404(
+        Task,
+        pk=pk,
+        owner=request.user
+    )
+
+    if request.method == 'POST':
+        form = TaskForm(
+            request.POST,
+            instance=task
+        )
+
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    else:
+        form = TaskForm(instance=task)
+
+    return render(
+        request,
+        'tasks/task_form.html',
+        {'form': form}
+    )

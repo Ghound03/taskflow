@@ -3,7 +3,11 @@
 {% block content %}
 
 <section class="form-section">
+    {% if form.instance.pk %}
+    <h2>Edit Task</h2>
+{% else %}
     <h2>Create Task</h2>
+{% endif %}
 
     <form method="POST">
         {% csrf_token %}
