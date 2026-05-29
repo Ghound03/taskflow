@@ -7,16 +7,18 @@ body {
 
 nav {
     background-color: #222;
-    color: white;
     padding: 1rem;
 }
 
 nav h1 {
+    color: white;
     margin: 0;
 }
 
 nav ul {
     list-style: none;
+    display: flex;
+    gap: 1rem;
     padding: 0;
 }
 
@@ -28,4 +30,18 @@ nav a {
 .hero {
     padding: 3rem;
     text-align: center;
+}
+
+
+nav button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font: inherit;
+}
+
+nav button:hover,
+nav a:hover {
+    text-decoration: underline;
 }
