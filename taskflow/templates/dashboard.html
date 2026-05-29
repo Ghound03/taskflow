@@ -8,6 +8,8 @@
     <p>Welcome, {{ user.username }}.</p>
 
     <p>This is your personal TaskFlow dashboard.</p>
+
+    <a href="{% url 'task_create' %}">Create New Task</a>
 </section>
 
 {% endblock %}
