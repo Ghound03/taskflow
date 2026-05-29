@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import TaskForm
+from .models import Task
 
 def home(request):
     """
@@ -13,10 +14,18 @@ def home(request):
 @login_required
 def dashboard(request):
     """
-    Render the logged-in user's dashboard.
+    Display the user's tasks.
     """
 
-    return render(request, 'dashboard.html')
+    tasks = Task.objects.filter(
+        owner=request.user
+    ).order_by('due_date')
+
+    return render(
+        request,
+        'dashboard.html',
+        {'tasks': tasks}
+    )
 
 
 @login_required

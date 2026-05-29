@@ -3,13 +3,53 @@
 {% block content %}
 
 <section class="hero">
+
     <h2>Dashboard</h2>
 
     <p>Welcome, {{ user.username }}.</p>
 
-    <p>This is your personal TaskFlow dashboard.</p>
+    <p>
+        <a href="{% url 'task_create' %}">
+            Create New Task
+        </a>
+    </p>
 
-    <a href="{% url 'task_create' %}">Create New Task</a>
+</section>
+
+<section>
+
+    <h3>My Tasks</h3>
+
+    {% if tasks %}
+
+        <table>
+
+            <tr>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Due Date</th>
+            </tr>
+
+            {% for task in tasks %}
+
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.priority }}</td>
+                <td>{{ task.status }}</td>
+                <td>{{ task.due_date }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+
+        <p>No tasks yet.</p>
+
+    {% endif %}
+
 </section>
 
 {% endblock %}
