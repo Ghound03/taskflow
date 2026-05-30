@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 from .forms import TaskForm
 from .models import Task
-from django.shortcuts import get_object_or_404
+
 
 def home(request):
     """
@@ -41,6 +42,25 @@ def dashboard(request):
             priority=priority_filter
         )
 
+    total_tasks = Task.objects.filter(
+        owner=request.user
+    ).count()
+
+    pending_tasks = Task.objects.filter(
+        owner=request.user,
+        status='Pending'
+    ).count()
+
+    in_progress_tasks = Task.objects.filter(
+        owner=request.user,
+        status='In Progress'
+    ).count()
+
+    completed_tasks = Task.objects.filter(
+        owner=request.user,
+        status='Completed'
+    ).count()
+
     return render(
         request,
         'dashboard.html',
@@ -49,6 +69,10 @@ def dashboard(request):
             'search_query': search_query,
             'status_filter': status_filter,
             'priority_filter': priority_filter,
+            'total_tasks': total_tasks,
+            'pending_tasks': pending_tasks,
+            'in_progress_tasks': in_progress_tasks,
+            'completed_tasks': completed_tasks,
         }
     )
 
@@ -105,6 +129,7 @@ def task_update(request, pk):
         'tasks/task_form.html',
         {'form': form}
     )
+
 
 @login_required
 def task_delete(request, pk):

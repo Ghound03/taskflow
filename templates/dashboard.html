@@ -6,6 +6,30 @@
 
     <h2>Dashboard</h2>
 
+    <div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Total</h3>
+        <p>{{ total_tasks }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Pending</h3>
+        <p>{{ pending_tasks }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>In Progress</h3>
+        <p>{{ in_progress_tasks }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Completed</h3>
+        <p>{{ completed_tasks }}</p>
+    </div>
+
+</div>
+
     <p>Welcome, {{ user.username }}.</p>
 
     <p>
