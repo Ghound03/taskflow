@@ -81,3 +81,25 @@ def task_update(request, pk):
         'tasks/task_form.html',
         {'form': form}
     )
+
+@login_required
+def task_delete(request, pk):
+    """
+    Delete an existing task.
+    """
+
+    task = get_object_or_404(
+        Task,
+        pk=pk,
+        owner=request.user
+    )
+
+    if request.method == 'POST':
+        task.delete()
+        return redirect('dashboard')
+
+    return render(
+        request,
+        'tasks/task_confirm_delete.html',
+        {'task': task}
+    )

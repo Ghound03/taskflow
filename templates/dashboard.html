@@ -41,10 +41,16 @@
     <td>{{ task.due_date }}</td>
 
     <td>
-        <a href="{% url 'task_update' task.id %}">
-            Edit
-        </a>
-    </td>
+    <a href="{% url 'task_update' task.id %}">
+        Edit
+    </a>
+
+    |
+
+    <a href="{% url 'task_delete' task.id %}">
+        Delete
+    </a>
+</td>
 </tr>
 
             {% endfor %}
