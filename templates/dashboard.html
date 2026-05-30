@@ -20,6 +20,84 @@
 
     <h3>My Tasks</h3>
 
+    <form method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search tasks..."
+            value="{{ search_query }}"
+        >
+
+        <select name="status">
+            <option value="">All Statuses</option>
+
+            <option value="Pending"
+                {% if status_filter == "Pending" %}
+                    selected
+                {% endif %}
+            >
+                Pending
+            </option>
+
+            <option value="In Progress"
+                {% if status_filter == "In Progress" %}
+                    selected
+                {% endif %}
+            >
+                In Progress
+            </option>
+
+            <option value="Completed"
+                {% if status_filter == "Completed" %}
+                    selected
+                {% endif %}
+            >
+                Completed
+            </option>
+
+        </select>
+
+        <select name="priority">
+
+            <option value="">All Priorities</option>
+
+            <option value="Low"
+                {% if priority_filter == "Low" %}
+                    selected
+                {% endif %}
+            >
+                Low
+            </option>
+
+            <option value="Medium"
+                {% if priority_filter == "Medium" %}
+                    selected
+                {% endif %}
+            >
+                Medium
+            </option>
+
+            <option value="High"
+                {% if priority_filter == "High" %}
+                    selected
+                {% endif %}
+            >
+                High
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Apply Filters
+        </button>
+
+        <a href="{% url 'dashboard' %}">
+            Clear
+        </a>
+
+    </form>
+
     {% if tasks %}
 
         <table>
@@ -34,24 +112,31 @@
 
             {% for task in tasks %}
 
-           <tr>
-    <td>{{ task.title }}</td>
-    <td>{{ task.priority }}</td>
-    <td>{{ task.status }}</td>
-    <td>{{ task.due_date }}</td>
+            <tr>
 
-    <td>
-    <a href="{% url 'task_update' task.id %}">
-        Edit
-    </a>
+                <td>{{ task.title }}</td>
 
-    |
+                <td>{{ task.priority }}</td>
 
-    <a href="{% url 'task_delete' task.id %}">
-        Delete
-    </a>
-</td>
-</tr>
+                <td>{{ task.status }}</td>
+
+                <td>{{ task.due_date }}</td>
+
+                <td>
+
+                    <a href="{% url 'task_update' task.id %}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a href="{% url 'task_delete' task.id %}">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
 
             {% endfor %}
 
@@ -59,7 +144,7 @@
 
     {% else %}
 
-        <p>No tasks yet.</p>
+        <p>No tasks found.</p>
 
     {% endif %}
 

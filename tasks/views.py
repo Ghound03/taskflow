@@ -15,17 +15,41 @@ def home(request):
 @login_required
 def dashboard(request):
     """
-    Display the user's tasks.
+    Display and filter the user's tasks.
     """
+
+    search_query = request.GET.get('search', '')
+    status_filter = request.GET.get('status', '')
+    priority_filter = request.GET.get('priority', '')
 
     tasks = Task.objects.filter(
         owner=request.user
     ).order_by('due_date')
 
+    if search_query:
+        tasks = tasks.filter(
+            title__icontains=search_query
+        )
+
+    if status_filter:
+        tasks = tasks.filter(
+            status=status_filter
+        )
+
+    if priority_filter:
+        tasks = tasks.filter(
+            priority=priority_filter
+        )
+
     return render(
         request,
         'dashboard.html',
-        {'tasks': tasks}
+        {
+            'tasks': tasks,
+            'search_query': search_query,
+            'status_filter': status_filter,
+            'priority_filter': priority_filter,
+        }
     )
 
 
