@@ -6,7 +6,17 @@
 
     <h2>Dashboard</h2>
 
-    <div class="stats-container">
+    <p>Welcome, {{ user.username }}.</p>
+
+    <p>
+        <a href="{% url 'task_create' %}">
+            Create New Task
+        </a>
+    </p>
+
+</section>
+
+<div class="stats-container">
 
     <div class="stat-card">
         <h3>Total</h3>
@@ -30,15 +40,23 @@
 
 </div>
 
-    <p>Welcome, {{ user.username }}.</p>
+{% if quote %}
+
+<div class="quote-card">
+
+    <h3>Daily Motivation</h3>
 
     <p>
-        <a href="{% url 'task_create' %}">
-            Create New Task
-        </a>
+        "{{ quote.content }}"
     </p>
 
-</section>
+    <small>
+        - {{ quote.author }}
+    </small>
+
+</div>
+
+{% endif %}
 
 <section>
 
@@ -84,7 +102,9 @@
 
         <select name="priority">
 
-            <option value="">All Priorities</option>
+            <option value="">
+                All Priorities
+            </option>
 
             <option value="Low"
                 {% if priority_filter == "Low" %}
@@ -124,47 +144,47 @@
 
     {% if tasks %}
 
-        <table>
+    <table>
 
-            <tr>
-                <th>Title</th>
-                <th>Priority</th>
-                <th>Status</th>
-                <th>Due Date</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
 
-            {% for task in tasks %}
+        {% for task in tasks %}
 
-            <tr>
+        <tr>
 
-                <td>{{ task.title }}</td>
+            <td>{{ task.title }}</td>
 
-                <td>{{ task.priority }}</td>
+            <td>{{ task.priority }}</td>
 
-                <td>{{ task.status }}</td>
+            <td>{{ task.status }}</td>
 
-                <td>{{ task.due_date }}</td>
+            <td>{{ task.due_date }}</td>
 
-                <td>
+            <td>
 
-                    <a href="{% url 'task_update' task.id %}">
-                        Edit
-                    </a>
+                <a href="{% url 'task_update' task.id %}">
+                    Edit
+                </a>
 
-                    |
+                |
 
-                    <a href="{% url 'task_delete' task.id %}">
-                        Delete
-                    </a>
+                <a href="{% url 'task_delete' task.id %}">
+                    Delete
+                </a>
 
-                </td>
+            </td>
 
-            </tr>
+        </tr>
 
-            {% endfor %}
+        {% endfor %}
 
-        </table>
+    </table>
 
     {% else %}
 

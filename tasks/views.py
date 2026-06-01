@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
 from .forms import TaskForm
 from .models import Task
+import requests
 
 
 def home(request):
@@ -61,6 +61,28 @@ def dashboard(request):
         status='Completed'
     ).count()
 
+    quote = {
+    'content': 'Small progress each day adds up to big results.',
+    'author': 'TaskFlow'
+     }
+
+    try:
+      response = requests.get(
+        "https://api.quotable.io/random",
+        timeout=5
+    )
+
+      if response.status_code == 200:
+        data = response.json()
+
+        quote = {
+            'content': data['content'],
+            'author': data['author']
+        }
+
+    except Exception:
+         pass
+
     return render(
         request,
         'dashboard.html',
@@ -73,6 +95,7 @@ def dashboard(request):
             'pending_tasks': pending_tasks,
             'in_progress_tasks': in_progress_tasks,
             'completed_tasks': completed_tasks,
+            'quote': quote,
         }
     )
 
