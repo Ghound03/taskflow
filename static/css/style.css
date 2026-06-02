@@ -100,3 +100,65 @@ th {
     text-align: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+.status,
+.priority {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.pending {
+    background-color: #ffe08a;
+}
+
+.progress {
+    background-color: #90cdf4;
+}
+
+.completed {
+    background-color: #9ae6b4;
+}
+
+.low {
+    background-color: #9ae6b4;
+}
+
+.medium {
+    background-color: #fbd38d;
+}
+
+.high {
+    background-color: #fc8181;
+}
+
+a.button,
+button {
+    background-color: #222;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover,
+a.button:hover {
+    opacity: 0.9;
+}
+
+form input,
+form select {
+    padding: 8px;
+    margin-right: 5px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+table tr:hover {
+    background-color: #efefef;
+}

@@ -160,9 +160,47 @@
 
             <td>{{ task.title }}</td>
 
-            <td>{{ task.priority }}</td>
+            <td>
 
-            <td>{{ task.status }}</td>
+    {% if task.priority == "Low" %}
+        <span class="priority low">
+            Low
+        </span>
+
+    {% elif task.priority == "Medium" %}
+        <span class="priority medium">
+            Medium
+        </span>
+
+    {% else %}
+        <span class="priority high">
+            High
+        </span>
+
+    {% endif %}
+
+</td>
+
+            <td>
+
+    {% if task.status == "Pending" %}
+        <span class="status pending">
+            Pending
+        </span>
+
+    {% elif task.status == "In Progress" %}
+        <span class="status progress">
+            In Progress
+        </span>
+
+    {% else %}
+        <span class="status completed">
+            Completed
+        </span>
+
+    {% endif %}
+
+</td>
 
             <td>{{ task.due_date }}</td>
 
