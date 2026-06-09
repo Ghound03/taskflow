@@ -162,3 +162,21 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: #efefef;
 }
+
+@media (max-width: 768px) {
+
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}

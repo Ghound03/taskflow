@@ -16,16 +16,36 @@
     <li><a href="{% url 'home' %}">Home</a></li>
 
     {% if user.is_authenticated %}
-        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+
+        <li>
+            <a href="{% url 'dashboard' %}">
+                Dashboard
+            </a>
+        </li>
+
         <li>
             <form method="POST" action="{% url 'logout' %}">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button type="submit">
+                    Logout
+                </button>
             </form>
         </li>
+
     {% else %}
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'register' %}">Register</a></li>
+
+        <li>
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+        </li>
+
     {% endif %}
 </ul>
     </nav>

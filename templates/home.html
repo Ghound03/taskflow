@@ -4,12 +4,28 @@
 
 <section class="hero">
 
-    <h2>Welcome to TaskFlow</h2>
+    <h1>TaskFlow</h1>
+
+    <h2>Manage Your Tasks Efficiently</h2>
 
     <p>
         Organize your work, track progress,
-        and improve productivity.
+        and stay productive.
     </p>
+
+    {% if user.is_authenticated %}
+
+        <a class="button" href="{% url 'dashboard' %}">
+            Go To Dashboard
+        </a>
+
+    {% else %}
+
+        <a class="button" href="{% url 'register' %}">
+            Get Started
+        </a>
+
+    {% endif %}
 
 </section>
 

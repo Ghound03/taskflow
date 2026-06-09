@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h2>403 - Access Denied</h2>
+
+    <p>
+        You do not have permission to access this page.
+    </p>
+
+    <a href="{% url 'home' %}">
+        Return Home
+    </a>
+
+</section>
+
+{% endblock %}
