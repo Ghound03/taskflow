@@ -167,6 +167,11 @@ table tr:hover {
 
 @media (max-width: 768px) {
 
+    .hero-content {
+    flex-direction: column;
+    text-align: center;
+}
+
     .stats-container {
         flex-direction: column;
         align-items: center;
@@ -181,4 +186,36 @@ table tr:hover {
         gap: 10px;
     }
 
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-image img {
+    max-width: 350px;
+    width: 100%;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #222;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.hero-image {
+    margin-top: 20px;
 }
